@@ -18,14 +18,25 @@
 
 <?php include ("theme/topbit.php"); ?>
 
-	<div class="main">
+<div class="main">
 
-		<h1>Welcome to Chic Clothing</h1>
+    <?php
+        
+    if(!isset($_REQUEST['page'])){
+        include("content/home.php");
+    }
+        
+    else{
+        // prevents user from navigating through file system
+        $page=preg_replace('/[^0-9a-zA-Z]-/','',$_REQUEST['page']);
+        include("content/$page.php");
+    }
 
-		<p>Please choose a category from the list above or <a href="#">login</a> to access the admin panel.</p>	
+    ?>
 
-	</div> <!-- end main -->
+
+</div> <!-- end main -->
 
 <?php include ("theme/bottombit.php"); ?>
-		
+
 </html>

@@ -24,7 +24,9 @@
         
         do{?>
         
-        <a class="nav" href="#"><?php echo $cat_rs['catName'];?></a>|
+        <a class="nav" href="index.php?page=category&categoryID=<?php echo $cat_rs['categoryID'];?>">
+            
+            <?php echo $cat_rs['catName'];?></a>|
         <?php
             
         }
