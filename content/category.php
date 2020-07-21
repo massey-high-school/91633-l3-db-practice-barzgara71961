@@ -5,7 +5,10 @@
         header('Localtion:index.php');
     }
 
-$stock_sql="SELECT stock.stockID, stock.name, stock.price, category.catName FROM stock JOIN category ON (stock.categoryID=categoryID) WHERE stock.categoryID=". $_REQUEST['categoryID']."ORDER BY stock.name ASC";
+// $stock_sql="SELECT * FROM `L3_prac_stock` JOIN L3_prac_categories ON (L3_prac_stock.categoryID=L3_prac_categories.categoryID) WHERE L3_prac_stock.categoryID=". $_REQUEST['categoryID']."ORDER BY L3_prac_stock.name ASC";
+
+
+$stock_sql = "SELECT * FROM `L3_prac_stock`";
 $stock_query=mysqli_query($dbconnect,$stock_sql);
 $stock_rs=mysqli_fetch_assoc($stock_query);
 
