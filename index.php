@@ -29,7 +29,7 @@
     else{
         // prevents user from navigating through file system
         $page=preg_replace('/[^0-9a-zA-Z]-/','',$_REQUEST['page']);
-        include("content/$page.php");
+        include("content/item.php");
     }
 
     ?>
