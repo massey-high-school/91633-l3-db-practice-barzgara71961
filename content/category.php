@@ -31,7 +31,7 @@ do{
     <tr class="results">
         
         <td class="results">
-            <a href="index.php?page=item$stockID=<?php echo $stock_rs['stockID'];?>">
+            <a href="index.php?page=item&stockID=<?php echo $stock_rs['stockID'];?>">
                 <?php echo $stock_rs['name'];?>
             </a>
         

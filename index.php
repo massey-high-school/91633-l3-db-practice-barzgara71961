@@ -2,7 +2,9 @@
 
 <?php
     
+    session_start();
     include("config.php");
+    include("function.php");
     
     // connect to datebase...
     $dbconnect=mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -23,13 +25,13 @@
     <?php
         
     if(!isset($_REQUEST['page'])){
-        include("content/home.php");
+        $page="adminlogin";
     }
         
     else{
         // prevents user from navigating through file system
         $page=preg_replace('/[^0-9a-zA-Z]-/','',$_REQUEST['page']);
-        include("content/item.php");
+        include("content/$page.php");
     }
 
     ?>
