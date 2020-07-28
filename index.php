@@ -18,7 +18,11 @@
 ?>
 <html>
 
-<?php include ("theme/topbit.php"); ?>
+<?php 
+    include ("theme/heading.php");
+    include ("content/headers.html");
+    
+    ?>
 
 <div class="main">
 
