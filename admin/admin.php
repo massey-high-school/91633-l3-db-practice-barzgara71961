@@ -26,8 +26,8 @@
 
 <?php 
     
-    include ("../theme/heading.php"); 
-    include ("admin/heading.php"); 
+    //include ("../theme/heading.php"); 
+    include ("adminheading.php"); 
 ?>
 
 <div class="main">
@@ -41,9 +41,11 @@
     else{
         // prevents user from navigating through file system
         $page=preg_replace('/[^0-9a-zA-Z]-/','',$_REQUEST['page']);
-        include("content/$page.php");
+        
     }
-
+        // offer logon if not logged in
+    if ($page=="logout" or $page=="adminlogin" or $page=="login")
+        include("$page.php")
     ?>
 
 

@@ -29,7 +29,7 @@
     <?php
         
     if(!isset($_REQUEST['page'])){
-        $page="adminlogin";
+        include($page="content/home.php");
     }
         
     else{

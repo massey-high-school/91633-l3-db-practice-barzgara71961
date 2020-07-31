@@ -37,6 +37,6 @@
         
         | 
 					
-		<a class="nav" href="admin/admin.php">Admin</a>
+		<a class="nav" href="admin/admin.php?page=login">Admin</a>
 		
 	</div>	<!-- end navigation -->

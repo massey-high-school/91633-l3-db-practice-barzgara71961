@@ -1,7 +1,3 @@
-	<div class="heading">
-		<h1 class="white">Chic Clothing</h1>
-	</div> <!-- end heading -->
-
 <div class="navigation">
 		
 		<?php
@@ -11,7 +7,7 @@
         
         do{?>
         
-        <a class="nav" href="index.php?page=category&categoryID=<?php echo $cat_rs['categoryID'];?>">
+        <a class="nav" href="../index.php?page=category&categoryID=<?php echo $cat_rs['categoryID'];?>">
             
             <?php echo $cat_rs['catName'];?></a>|
         <?php
@@ -24,6 +20,6 @@
         
         | 
 					
-		<a class="nav" href="admin/admin.php?page=login">Admin</a>
+		<a class="nav" href="admin.php">Admin</a>
 		
 	</div>	<!-- end navigation -->
