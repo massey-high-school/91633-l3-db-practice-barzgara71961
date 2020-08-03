@@ -45,7 +45,18 @@
     }
         // offer logon if not logged in
     if ($page=="logout" or $page=="adminlogin" or $page=="login")
-        include("$page.php")
+        include("$page.php");
+        
+    else{
+        if(!isset($_SESSION['admin']))
+        {
+            header('Location: admin.php?page=login');
+            die("YOu have not logged in");
+        }
+        else 
+            include("$page.php");
+        
+    }
     ?>
 
 

@@ -13,12 +13,29 @@ div.content {
 	width: 800px;
 	}
 
-div.heading{
-	color: #ffffff;
-	text-align: center;
-	background-color: #052544; /* dark blue */
-	padding: 10px;
-	}
+div.heading {
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 1200px;
+    margin:  auto;
+    width: 100%;
+    clear: both;
+    height: auto;
+    background-color: #DCDCDC;
+    padding-top: 30px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 100%;
+    text-align: left;
+    line-height: auto;
+    padding: 1%;
+    border-radius: 10px;
+    background-color: #052544; /* the colour for the back groung of the main is in */
+    background-repeat: repeat-x;
+
+    background-position: center center, center top;
+    background-repeat: no-repeat;
+}
 	
 div.photo{
 	padding-right: 10px;
@@ -26,10 +43,27 @@ div.photo{
 }
 
 div.main{
-	/*prevent image from overflowing */
-	overflow:auto;
-	padding: 20px;
-	background-color: #ffffff;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 1200px;
+    margin:  auto;
+    width: 100%;
+    clear: both;
+    height: auto;
+    background-color: #DCDCDC;
+    padding-top: 30px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 100%;
+    text-align: left;
+    line-height: auto;
+    padding: 1%;
+    border-radius: 10px;
+    background-color: white; /* the colour for the back groung of the main is in */
+    background-repeat: repeat-x;
+
+    background-position: center center, center top;
+    background-repeat: no-repeat;
 }
 
 div.warning{
@@ -49,22 +83,53 @@ img.header
 
 }
 
-div.navigation
-{
-	background-color: #000000;
-	color: yellow;
-	padding: 10px;
-	margin: auto;
-	text-align: center;
+div.navigation{
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 1200px;
+    margin:  auto;
+    width: 100%;
+    clear: both;
+    height: auto;
+    background-color: #DCDCDC;
+    padding-top: 30px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 100%;
+    text-align: left;
+    line-height: auto;
+    padding: 1%;
+    border-radius: 10px;
+    background-color: black; /* the colour for the back groung of the main is in */
+    background-repeat: repeat-x;
+
+    background-position: center center, center top;
+    background-repeat: no-repeat;
 }
 
-div.footer
-{
-background-color: #000000;
-color: #ffffff;
-text-align: right;
-padding: 10px;
-}
+div.footer{
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 1200px;
+    margin:  auto;
+    width: 100%;
+    clear: both;
+    height: auto;
+    background-color: #DCDCDC;
+    padding-top: 30px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 100%;
+    text-align: left;
+    line-height: auto;
+    padding: 1%;
+    border-radius: 10px;
+    background-color: #052544; /* the colour for the back groung of the main is in */
+    background-repeat: repeat-x;
+
+    background-position: center center, center top;
+    background-repeat: no-repeat;
+}}
 
 h1 {
 	color: #052544;
