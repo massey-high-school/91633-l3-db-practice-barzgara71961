@@ -26,7 +26,7 @@
 
 <?php 
     
-    //include ("../theme/heading.php"); 
+    // include ("../theme/heading.php"); 
     include ("adminheading.php"); 
 ?>
 
