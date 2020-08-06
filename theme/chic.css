@@ -119,15 +119,15 @@ div.footer{
     background-color: #DCDCDC;
     padding-top: 30px;
     font-family: 'PT Sans', sans-serif;
+    color: white
     font-size: 100%;
-    text-align: left;
+    text-align: right;
     line-height: auto;
     padding: 1%;
     border-radius: 10px;
     background-color: #052544; /* the colour for the back groung of the main is in */
     background-repeat: repeat-x;
-
-    background-position: center center, center top;
+    background-position: right right, center top;
     background-repeat: no-repeat;
 }}
 

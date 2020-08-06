@@ -1,3 +1,7 @@
+	<div class="heading">
+		<h1 class="white">Chic Clothing</h1>
+	</div> <!-- end heading -->
+
 <div class="navigation">
 		
 		<?php
@@ -20,6 +24,6 @@
         
         | 
 					
-		<a class="nav" href="admin.php">Admin</a>
+		<a class="nav" href="admin/admin.php?page=login">Admin</a>
 		
 	</div>	<!-- end navigation -->

@@ -24,7 +24,7 @@
         
         do{?>
         
-        <a class="nav" href="index.php?page=category&categoryID=<?php echo $cat_rs['categoryID'];?>">
+        <a class="navigation" href="index.php?page=category&categoryID=<?php echo $cat_rs['categoryID'];?>">
             
             <?php echo $cat_rs['catName'];?></a>|
         <?php
@@ -38,5 +38,6 @@
         | 
 					
 		<a class="nav" href="admin/admin.php?page=login">Admin</a>
+        
 		
 	</div>	<!-- end navigation -->
