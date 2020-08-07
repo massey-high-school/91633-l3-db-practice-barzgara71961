@@ -22,12 +22,11 @@ $uploadOK=1;
 if ($_SERVER["REQUEST_METHOD"]=="POST"){
     
     // sanitise all variables
-    $name = test_input($_POST["name"]);
+    $name = test_input(mysqli_real_escape_string($dbconnect,$_POST["name"]));
     $price = test_input($_POST["price"]);
-    $categoryID = test_input($_POST["categoryID"]);
-    $photo = test_input($_POST["photo"]);
-    $topline = test_input($_POST["topline"]);
-    $description = test_input($_POST["description"]);
+    $categoryID = preg_replace('/[^0-9.]/','',$_POST["categoryID"]);
+    $topline = test_input(mysqli_real_escape_string($dbconnect,$_POST["topline"]));
+    $description = test_input(mysqli_real_escape_string($dbconnect,$_POST["description"]));
     
     // Error checking...
     if (empty($name)){
@@ -52,12 +51,12 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     }
     
     // Check image
-    if ($_FILES['fileYopUpload']['name']!=""){
+    if ($_FILES['fileToUpload']['name']!=""){
         
     // shifts images from temporary directory to target directory
         
     //use unique-id so each uploaded direcotry to target diectory
-        $target_file = uniqid()."-".basename($_FILES["fileTopUpload"])
+        $target_file = uniqid()."-".basename($_FILES["fileTopUpload"]);
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
         
     // Allow .jng, .png or gif only
@@ -87,7 +86,28 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
             '$name',
             '$categoryID',
             '$price',
-            )"
+            '".$target_file."',
+            '$topline',
+            '$description'
+            )";
+        
+        else
+            $addstock_sql=" INSERT INTO STOCK (name, categoryID,price,photo,topline,description) VALUES(
+            '$name',
+            '$categoryID',
+            '$price',
+            '$photo',
+            '$topline',
+            '$description'
+            )";
+        
+        // Code below runs query and data into datebase
+        $addstock_query=mysqli_query($dbconnect,$addstock_sql);
+        
+        if ($uploadOK==1){
+            move_uploaded_file($_FILEs["fileToUpload"]["tmp_name"],IMAGE_DIRECTORY.'/'.$target_file);
+        }
+        
     }
 }
 
