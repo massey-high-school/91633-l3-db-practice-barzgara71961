@@ -56,8 +56,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     // shifts images from temporary directory to target directory
         
     //use unique-id so each uploaded direcotry to target diectory
-        $target_file = uniqid()."-".basename($_FILES["fileTopUpload"]);
-        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        $target_file = uniqid()."-".basename($_FILES["fileToUpload"]['name']);
+        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        echo "Target_file".$target_file;
         
     // Allow .jng, .png or gif only
         if($imageFileType !="jpg" && $imageFileType != "png" && $imageFileType !="gif"){
@@ -76,13 +77,13 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     
     // if everything is OK - show 'success massage and update database
     if($valid){
-        header('Location: admin.php?page=addstock_success');
+        // header('Location: admin.php?page=addstock_success');
     
     
     // put enetry into database
-        if($_FILES['fileToUpload']['name'!=""])
+        if($_FILES['fileToUpload']['name']!="")
             
-            $addstock_sql=" INSERT INTO STOCK (name, categoryID,price,photo,topline,description) VALUES(
+            $addstock_sql=" INSERT INTO L3_prac_stock (name, categoryID,price,photo,topline,description) VALUES(
             '$name',
             '$categoryID',
             '$price',
@@ -92,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
             )";
         
         else
-            $addstock_sql=" INSERT INTO STOCK (name, categoryID,price,photo,topline,description) VALUES(
+            $addstock_sql=" INSERT INTO L3_prac_stock (name, categoryID,price,photo,topline,description) VALUES(
             '$name',
             '$categoryID',
             '$price',
@@ -105,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
         $addstock_query=mysqli_query($dbconnect,$addstock_sql);
         
         if ($uploadOK==1){
-            move_uploaded_file($_FILEs["fileToUpload"]["tmp_name"],IMAGE_DIRECTORY.'/'.$target_file);
+            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],IMAGE_DIRECTORY.'/'.$target_file);
         }
         
     }
