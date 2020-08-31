@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     //use unique-id so each uploaded direcotry to target diectory
         $target_file = uniqid()."-".basename($_FILES["fileToUpload"]['name']);
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-        echo "Target_file".$target_file;
+        
         
     // Allow .jng, .png or gif only
         if($imageFileType !="jpg" && $imageFileType != "png" && $imageFileType !="gif"){
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     
     // if everything is OK - show 'success massage and update database
     if($valid){
-        // header('Location: admin.php?page=addstock_success');
+        header('Location: admin.php?page=addstock_success');
     
     
     // put enetry into database
