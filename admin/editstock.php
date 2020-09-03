@@ -1,4 +1,5 @@
 <?php 
+
 $name="";
 $price=0;
 $categoryID=1;
@@ -6,6 +7,19 @@ $topline="";
 $description="";
 $photo="noimage.png";
 $NameErr=$PriceErr=$PhotoErr=$TopErr=$DesErr="";
+
+// sql to populate our 'edit' form...
+$stockID=preg_replace('/[^0-9.]/','',$_REQUEST['stockID']);
+$editstock_sql="SELECT * FROM `L3_prac_stock` WHERE L3_prac_stock.stockID=".$stockID;
+$editstock_query=mysqli_query($dbconnect, $editstock_sql);
+$editstock_rs=mysqli_fetch_assoc($editstock_query);
+
+$name=$editstock_rs['name'];
+$price=$editstock_rs['price'];
+$categoryID=$editstock_rs['categoryID'];
+$topline=$editstock_rs['topline'];
+$description=$editstock_rs['description'];
+$photo=$editstock_rs['photo'];
 
 // define variables and set to empty values...
 $valid=true;
@@ -70,9 +84,23 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     
     // if everything is OK - show 'success massage and update database
     if($valid){
-        header('Location: admin.php?page=addstock_success');
+        header('Location: admin.php?page=editstock_success');
     
+    // replace image and delete 'old' image if necessary
     
+    if ($_FILES['fileToUpload']['name']!="")
+    {
+        $target_file = uniqid()."-".basename($_FILES["fileToUpload"]['name']);
+        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        $changephoto=",photo=\"$target_file\"";
+        
+        // Removes old photo file...
+        if ($editstock_rs['photo']!='noimage.png' and $editstock_rs['photo']!='')
+        {
+            unlink(IMAGE_DIRECTORY."/".$editstock_rs['photo']!='')
+        }
+    }
+        
     // put enetry into database
         if($_FILES['fileToUpload']['name']!="")
             
