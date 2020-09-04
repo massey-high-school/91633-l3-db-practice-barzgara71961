@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     
     // if everything is OK - show 'success massage and update database
     if($valid){
-        header('Location: admin.php?page=editstock_success');
+        // header('Location: admin.php?page=editstock_success');
     
     // replace image and delete 'old' image if necessary
     
@@ -97,34 +97,32 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
         // Removes old photo file...
         if ($editstock_rs['photo']!='noimage.png' and $editstock_rs['photo']!='')
         {
-            unlink(IMAGE_DIRECTORY."/".$editstock_rs['photo']!='')
+            unlink(IMAGE_DIRECTORY."/".$editstock_rs['photo']!='');
         }
+        
+        $fileuploaded=1;
     }
         
-    // put enetry into database
-        if($_FILES['fileToUpload']['name']!="")
-            
-            $addstock_sql=" INSERT INTO L3_prac_stock (name, categoryID,price,photo,topline,description) VALUES(
-            '$name',
-            '$categoryID',
-            '$price',
-            '".$target_file."',
-            '$topline',
-            '$description'
-            )";
+    else {
+        $fileuploaded=0;
+        $changeephoto='';
+    }
         
-        else
-            $addstock_sql=" INSERT INTO L3_prac_stock (name, categoryID,price,photo,topline,description) VALUES(
-            '$name',
-            '$categoryID',
-            '$price',
-            '$photo',
-            '$topline',
-            '$description'
-            )";
+    // update the datebase Column_Name=New_Value, Column_Name=new_Value
         
+        $editstock_sql="UPDATE L3_prac_stock SET
+        name='$name',
+        categoryID='$categoryID',
+        price='$price',
+        photo='$photo',
+        topline='$topline',
+        description='$description'
+        $changephoto,
+        WHERE stockID=$stockID";
+
+
         // Code below runs query and data into datebase
-        $addstock_query=mysqli_query($dbconnect,$addstock_sql);
+        $editstock_query=mysqli_query($dbconnect,$addstock_sql);
         
         if ($uploadOK==1){
             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],IMAGE_DIRECTORY.'/'.$target_file);
@@ -135,8 +133,8 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
 
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]."?page=addstock");?>" enctype="multipart/form-data">
-    <h1>Add Item</h1>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]."?page=editstock&stockID=$stockID");?>" enctype="multipart/form-data">
+    <h1>Edit Item</h1>
     
     <p>
         <b>Item Name:</b>
@@ -160,8 +158,15 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
             $cat_query=mysqli_query($dbconnect,$cat_sql);
             
             do{
+                
+                if ($cat_rs['categoryID']==$categoryID){
+                    echo '<option value="'.$cat_rs['categoryID'].'"" selected';
+                echo ">".$cat_rs['catName']."</option>";
+                }
+                else{
                 echo '<option value="'.$cat_rs['categoryID'].'"';
                 echo">".$cat_rs['catName']."</option>";
+                }
             }
             
             while ($cat_rs=mysqli_fetch_assoc($cat_query))
@@ -173,6 +178,15 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     
      <p>
         <b>Photo</b>
+    </p>
+         <p>
+            <?php 
+            // show image in database
+                echo "<img src=".IMAGE_DIRECTORY."/".$editstock_rs['photo'].">";
+            ?>
+        </p>
+    <p>
+         Optionally Replace Photo Above:
         <input type="file" name="fileToUpload" value=""/>&nbsp;&nbsp;<span class="error"><?php echo $PhotoErr;?></span>
     </p>
     
@@ -188,6 +202,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     <p>
         <textarea type="text" name="description" cols="60" rows="7"><?php echo $description;?></textarea>
     </p>
-    <input type="submit" name="submit" value="Add item"/>
+    <input type="submit" name="submit" value="Edit item"/>
 
 </form>
