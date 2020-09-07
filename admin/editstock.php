@@ -20,6 +20,7 @@ $categoryID=$editstock_rs['categoryID'];
 $topline=$editstock_rs['topline'];
 $description=$editstock_rs['description'];
 $photo=$editstock_rs['photo'];
+echo "photo: ".$photo;
 
 // define variables and set to empty values...
 $valid=true;
@@ -97,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
         // Removes old photo file...
         if ($editstock_rs['photo']!='noimage.png' and $editstock_rs['photo']!='')
         {
-            unlink(IMAGE_DIRECTORY."/".$editstock_rs['photo']!='');
+            unlink(IMAGE_DIRECTORY."/".$editstock_rs['photo']);
         }
         
         $fileuploaded=1;
@@ -105,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
         
     else {
         $fileuploaded=0;
-        $changeephoto='';
+        $changephoto='';
     }
         
     // update the datebase Column_Name=New_Value, Column_Name=new_Value
@@ -122,9 +123,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
 
 
         // Code below runs query and data into datebase
-        $editstock_query=mysqli_query($dbconnect,$addstock_sql);
+        $editstock_query=mysqli_query($dbconnect,$editstock_sql);
         
         if ($uploadOK==1){
+            
             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],IMAGE_DIRECTORY.'/'.$target_file);
         }
         
