@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     
     // if everything is OK - show 'success massage and update database
     if($valid){
-         header('Location: admin.php?page=editstock_success');
+        // header('Location: admin.php?page=editstock_success');
     
     // replace image and delete 'old' image if necessary
     
@@ -113,15 +113,15 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
         
     // update the datebase Column_Name=New_Value, Column_Name=new_Value
         
-        $editstock_sql="UPDATE `barzgara`.`L3_prac_stock` SET
-        `name` = '$name',
-        `categoryID` = '$categoryID',
-        `price` = '$price',
-        `photo` = '$photo',
-        `topline` = '$topline',
-        `description` = '$description'
+        $editstock_sql="UPDATE `l3_prac_stock` SET 
+        `name` = '$name', 
+        `categoryID` = '$categoryID', 
+        `price` = '$price', 
+        `photo` = '$photo', 
+        `topline` = '$topline', 
+        `description` = '$description' 
         $changephoto
-        WHERE `L3_prac_stock`.`stockID` =$stockID;";
+        WHERE `l3_prac_stock`.`stockID` = $stockID;";
         
         
         
